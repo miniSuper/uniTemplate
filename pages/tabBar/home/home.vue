@@ -36,6 +36,17 @@ export default {
       }
     },
     hi() {
+      uni.setClipboardData({
+        //准备复制的数据
+        data: 'adsfasdf',
+        success: function(res) {
+          wx.showToast({
+            title: '复制成功',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
       this.$app
         .getTempFilePaths([
           'https://img9.doubanio.com/view/photo/s_ratio_poster/public/p1484728154.jpg',
@@ -53,7 +64,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .content {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
-import { request } from "../utils/index.js";
+import { request } from "../utils/request.js";
 
-const assignParams = (uniqueParams, API_PARAMS) => {
+const mergeParams = (uniqueParams, API_PARAMS) => {
   const DEFAULT_PARAMS = {
     url: "",
     method: "",
@@ -19,7 +19,7 @@ export const apiNewsList = uniqueParams => {
     url: "https://unidemo.dcloud.net.cn/api/news",
     method: "get"
   };
-  return request(assignParams(uniqueParams, API_PARAMS));
+  return request(mergeParams(uniqueParams, API_PARAMS));
 };
 
 /** ***********  数据页 end    *************/
