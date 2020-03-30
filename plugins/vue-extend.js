@@ -7,4 +7,4 @@ uniapp 中  组件的注册好像只能在main.js中  无法通过main.js中引�
 所以  本文件暂时无用
 保留只是为了避免再次疑惑
 */
-Vue.component("AppPublic", AppPublic);
+Vue.component("app-public", AppPublic);

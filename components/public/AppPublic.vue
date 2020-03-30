@@ -2,8 +2,8 @@
   <!-- 组件的命名规范参考vant weapp -->
   <view>
     <view
-      v-for="item in  publicViewData"
-      :key="item.viewId"
+      v-for="item in  publicViewData.viewList"
+      :key="item"
     >
       <view v-if="item.viewType==='loading'">
         <view class="loading">
@@ -24,13 +24,22 @@
         </view>
       </view>
       <view v-else-if="item.viewType==='wechat-share'">
-        i am share
+        <view class="wechat-share">
+          i am share
+        </view>
       </view>
       <view v-else-if="item.viewType==='dialog-warn'">
+        <view class="dialog-warn">
 
+        </view>
       </view>
       <view v-else-if="item.viewType==='dialog-confirm'">
+        <view class="dialog-confirm">
 
+        </view>
+      </view>
+      <view v-else>
+        错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误
       </view>
     </view>
 
@@ -50,46 +59,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.loading {
-  min-height: 40rpx;
-  line-height: 40rpx;
-  padding: 20rpx 0;
-  font-size: 30rpx;
-  text-align: center;
-  color: #999;
-  z-index: 999999999999;
-  .i {
-    display: inline-block;
-    vertical-align: top;
-    width: 30rpx;
-    height: 30rpx;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.14);
-    margin: 5rpx;
-    animation: loading 1.2s ease-in-out infinite;
-    transform: scale(0);
-  }
-  .i:nth-child(2) {
-    -webkit-animation-delay: 0.2s;
-    animation-delay: 0.2s;
-  }
-  .i:nth-child(3) {
-    -webkit-animation-delay: 0.4s;
-    animation-delay: 0.4s;
-  }
-  &.full {
-    position: fixed;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    animation: login 0.5s;
-    display: flex;
-    & > view {
-      margin: auto;
-    }
-  }
-}
 </style>
