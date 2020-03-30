@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App";
 import "./plugins/proto.js";
 import "./plugins/vue-extend.js";
+import "./assets/styles/app.scss";
 
 import AppPublic from "./components/public/AppPublic";
 Vue.component("AppPublic", AppPublic);
