@@ -3,31 +3,27 @@ import App from "./App";
 import "./assets/styles/app.scss";
 
 import AppPublic from "./components/public/AppPublic";
+import AppPublicWrap from "./components/public/AppPublicWrap";
 Vue.component("AppPublic", AppPublic);
+Vue.component("AppPublicWrap", AppPublicWrap);
 
 Vue.config.productionTip = false;
 App.mpType = "app";
 
-const globalData = {}; //临时数据  刷新浏览器就没了  类似vuex
-const publicViewData = [];
+const globalData = {
+  tempFileList: {}, //已下载的文件缓存
+  vueMethods: {} // app-public组件的方法  由于方法是函数  无法通过props传递给组件
+}; //临时数据  刷新浏览器就没了  类似vuex
 
-Object.defineProperty(Vue.prototype, "$app", {
+Object.defineProperty(Vue.prototype, "app", {
   get() {
     const vm = this.$root || this; //获取调用vue实例
     return {
-      setGlobalData() {},
-
-      getFromGlobalData() {},
-
-      setPublicViewData() {},
-
       getPublicViewData() {
         return {
           viewList: []
         };
       },
-
-      delPublicViewData() {},
 
       toast(title) {
         uni.showToast({
@@ -95,6 +91,7 @@ Object.defineProperty(Vue.prototype, "$app", {
         });
       },
 
+      // 虽然叫 show  但实质是 create
       showPublicView(contentData) {
         if (!vm.publicViewData) {
           console.log(
@@ -117,6 +114,20 @@ Object.defineProperty(Vue.prototype, "$app", {
         contentData.viewId = contentData.viewType + "-" + topIndex;
         viewList.push(contentData);
         console.log("after viewList", viewList);
+      },
+
+      // 虽然叫 hide  但实质是 delete
+      hidePublicView(viewId) {
+        const viewList = vm.publicViewData.viewList;
+        for (let i = 0; i < viewList.length; i++) {
+          if (viewList[i].viewId === viewId) {
+            viewList.splice(i, 1);
+            break;
+          }
+        }
+        // 删除组件保存在全局对象中的方法
+        const vueMethods = globalData.vueMethods;
+        delete vueMethods.viewId;
       },
 
       getOneTempFilePath(url) {

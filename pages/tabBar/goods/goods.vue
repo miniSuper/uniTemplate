@@ -11,10 +11,7 @@ export default {
   props: {},
   data() {
     return {
-      // publicViewData: this.$app.getPublicViewData()
-      publicViewData: {
-        viewList: [{ viewType: 'wechat-share' }, { viewType: 'wechat-share' }]
-      }
+      publicViewData: this.app.getPublicViewData()
     }
   },
   computed: {},
@@ -23,13 +20,10 @@ export default {
   },
   methods: {
     openPopup() {
-      console.log('click openPopup')
-      this.$app.showPublicView({
-        viewType: 'loading'
+      this.app.showPublicView({
+        viewType: 'loading',
+        closeByModalEnable: true
       })
-      setTimeout(() => {
-        console.log('this.publicViewData', this.publicViewData)
-      }, 1000)
     }
   }
 }
@@ -37,6 +31,6 @@ export default {
 
 <style lang="scss" scoped>
 .goods {
-  background-color: red;
+  background-color: rgb(96, 133, 255);
 }
 </style>

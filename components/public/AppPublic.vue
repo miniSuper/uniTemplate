@@ -1,16 +1,17 @@
 <template>
   <!-- 组件的命名规范参考vant weapp -->
   <view>
-    <view
+    <app-public-wrap
       v-for="item in  publicViewData.viewList"
-      :key="item"
+      :key="item.viewId"
+      :currentViewData="item"
     >
       <view v-if="item.viewType==='loading'">
         <view class="loading">
-          <view>
-            <view class="i"></view>
-            <view class="i"></view>
-            <view class="i"></view>
+          <view class="three-bounce">
+            <view class="bounce"></view>
+            <view class="bounce"></view>
+            <view class="bounce"></view>
           </view>
         </view>
       </view>
@@ -41,7 +42,7 @@
       <view v-else>
         错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误错误 错误
       </view>
-    </view>
+    </app-public-wrap>
 
   </view>
 </template>
